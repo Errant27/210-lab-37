@@ -1,24 +1,43 @@
 // 210 | Lab 37 | Neil Orton
 // IDE used: Xcode
-// Part 1
+// Part 2
 #include <iostream>
+#include <fstream>
 using namespace std;
 
-void sum_ascii(string);    // sum_ascii function prototype
+int sum_ascii(string);    // sum_ascii function prototype
 
 int main() {
+    ifstream reader;
+    string fobj;
+    static int sum;
 
-    sum_ascii("Defenestratee");    // sum_ascii function call, takes string as an argument
+    reader.open("lab-37-data.txt");    // file is opened
+    
+    if (!reader)
+        cout << "Error. File opening failed" << endl;    // Error messag if file uable to be opened
+    else {
+        cout << "File opening successful" << endl;
+        while (reader) {
+            reader >> fobj;    // file contents extracted as a string
+            sum += sum_ascii(fobj);    // sum_ascii function call, takes string as an argument
+        }
+    }
+    cout << sum << endl;    // ascii sum of the file contents outputted
+    
+    reader.close();    // file closed
 
+    
+        
     return 0;
 }
 
-void sum_ascii(string test) {    // sum_ascii function definition
+int sum_ascii(string test) {    // sum_ascii function definition
     int test_sum = 0;
     
     for (int i = 0; i < test.size(); i++)    // string elements (characters) are summed in the loop
         test_sum += (int) test.at(i);
     
-    cout << test_sum << endl;    // sum of the string's ascii values is outputted
+    return test_sum;    // sum of the string's ascii values returned
     
 }
