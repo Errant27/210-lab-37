@@ -12,11 +12,11 @@ const int CHOICES = 6;
 
 int gen_hash_index(string);    // sum_ascii function prototype
 int main_menu();    // Main menu function prototpye
-void print_first_100(map<int, list<char>>);    //
-void search_key(map<int, list<char>>);
-void add_key(map<int, list<char>>&);
-void remove_key(map<int, list<char>>&);
-void modify_key(map<int, list<char>>&);
+void print_first_100(map<int, list<char>>);    // print_first_100 function prototype
+void search_key(map<int, list<char>>);    // search_key function prototype
+void add_key(map<int, list<char>>&);    // add_key function prototype
+void remove_key(map<int, list<char>>&);    // remove_key function prototype
+void modify_key(map<int, list<char>>&);    // modify_key function prototype
 
 int main() {
     map<int, list<char>> hash_table;
@@ -72,7 +72,7 @@ int main() {
         choice = main_menu();
     }
     
-    cout << "Thanks for using the Hash Table Manager" << endl;
+    cout << "Thanks for using the Hash Table Manager" << endl;    // menu terminated message
     cout << "----------------------------" << endl;
         
     return 0;
@@ -88,7 +88,7 @@ int gen_hash_index(string str) {    // sum_ascii function definition
 }
 
 int main_menu() {
-        cout << "----------------------------" << endl;    // Main menu displaying allt h eoptions for the user
+        cout << "----------------------------" << endl;    // Main menu displaying all the options for the user
         cout << "*** Hash Table Manager ***" << endl;
         cout << "[1] Print first 100 entries" << endl;
         cout << "[2] Search for a key" << endl;
@@ -127,17 +127,17 @@ void print_first_100(map<int, list<char>> hash_table) {
 void search_key(map<int, list<char>> hash_table) {
     int search;
     
-    cout << "Enter the key you wish to search: ";
+    cout << "Enter the key you wish to search: ";    // user promted to enter the key they wish to search
     cin >> search;
     
-    auto it = hash_table.find(search);
-    if (it != hash_table.end()) {
-        cout << it->first << " found\n";
+    auto it = hash_table.find(search);    // iterator moves to search value
+    if (it != hash_table.end()) {    // if the iterator did not reach the end of the map
+        cout << it->first << " found\n";    // key and value within is displayed
         cout << "value at key: ";
         for (char cha : it->second)
             cout << cha;
     } else
-        cout << search << " not found.";
+        cout << search << " not found.";    // else, message displays that the key was not found
     cout << endl;
     
 }
@@ -147,30 +147,31 @@ void add_key(map<int, list<char>> &hash_table) {
     string str_input;
     list<char> temp_list;
     
-    cout << "Enter the value (string) you wish to add: ";
+    cout << "Enter the value (string) you wish to add: ";    // user promted to enter the value they wish to add
     cin >> str_input;
     
-    for (int i = 0; i < str_input.size(); i++)
+    for (int i = 0; i < str_input.size(); i++)    // temp list of the value is made
         temp_list.push_back(str_input.at(i));
     
-    index = gen_hash_index(str_input);
-    hash_table.insert(make_pair(index, temp_list));
+    index = gen_hash_index(str_input);    // index of the list is generated
+    hash_table.insert(make_pair(index, temp_list));    // key and list is added to the hash_table map
     
     cout << "Index: " << index << ";r [" << str_input << "] added." << endl;
     
 }
+
 void remove_key(map<int, list<char>> &hash_table) {
     int index;
     
-    cout << "Enter the key you wish to remove: ";
+    cout << "Enter the key you wish to remove: ";    // user promted to enter the value they wish to remove
     cin >> index;
     
-    auto it = hash_table.find(index);
-    if (it != hash_table.end()) {
-        hash_table.erase(it);
+    auto it = hash_table.find(index);    // iterator moves to the index they wish to remove
+    if (it != hash_table.end()) {    // if the iterator did not reach the end of the map
+        hash_table.erase(it);    // key is removed
         cout << "Key: " << index << " removed.";
     } else
-        cout << "Key: " << index << " not found";
+        cout << "Key: " << index << " not found";    // else, message displays that the key was not found
     
     cout << endl;
 }
@@ -180,21 +181,21 @@ void modify_key(map<int, list<char>> &hash_table) {
     int new_index;
     string str_input;
     
-    cout << "Enter the key you wish to modify: ";
+    cout << "Enter the key you wish to modify: ";    // user promted to enter the value they wish to modify
     cin >> index;
     
-    auto it = hash_table.find(index);
-    if (it != hash_table.end()) {
-        cout << "Enter the new value: ";
+    auto it = hash_table.find(index);    // iterator moves to the index they wish to modify
+    if (it != hash_table.end()) {    // if the iterator did not reach the end of the map
+        cout << "Enter the new value: ";    // user is promted ot enter the modification
         cin >> str_input;
         
-        list<char> temp_list;
+        list<char> temp_list;    // temp_list for their new value
         for (int i = 0; i < str_input.size(); i++)
             temp_list.push_back(str_input.at(i));
         
-        hash_table.erase(index);
-        new_index = gen_hash_index(str_input);
-        hash_table.insert(make_pair(new_index, temp_list));
+        hash_table.erase(index);    // index they wished to modif is removed
+        new_index = gen_hash_index(str_input);    // new index for modifed value is generated
+        hash_table.insert(make_pair(new_index, temp_list));    // new index and value is added to the map
         
         cout << index << " modified. " << "New index: " << new_index << "; [" << str_input << "] added.";
         
