@@ -19,11 +19,11 @@ int main() {
     reader.open("lab-37-data.txt");    // file is opened
     
     if (!reader)
-        cout << "Error. File opening failed" << endl;    // Error messag if file uable to be opened
+        cout << "Error. File opening failed" << endl;    // Error messag if file unable to be opened
     
     else {
         cout << "File opening successful" << endl;
-        while (reader ){
+        while (reader ) {
             list<char> temp_list;    // temp_list of chars to later store the list into the map
             reader >> fobj;    // file contents extracted as a string
             
