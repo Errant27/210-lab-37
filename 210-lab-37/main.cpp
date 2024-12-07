@@ -11,8 +11,8 @@ using namespace std;
 const int CHOICES = 6;
 
 int gen_hash_index(string);    // sum_ascii function prototype
-int main_menu();
-void print_first_100(map<int, list<char>>);
+int main_menu();    // Main menu function prototpye
+void print_first_100(map<int, list<char>>);    //
 void search_key(map<int, list<char>>);
 void add_key(map<int, list<char>>&);
 void remove_key(map<int, list<char>>&);
@@ -51,19 +51,19 @@ int main() {
     while (choice != CHOICES) {
         switch(choice) {    // switch cases for each of the choices intputted by the user, while the have not selected to end the main menu
             case 1:
-                print_first_100(hash_table);
+                print_first_100(hash_table);    // print_first_100 function call on selction 1
                 break;
             case 2:
-                search_key(hash_table);
+                search_key(hash_table);    // search_key function call on selction 2
                     break;
             case 3:
-                add_key(hash_table);
+                add_key(hash_table);    // add_key function call on selction 3
                     break;
             case 4:
-                remove_key(hash_table);
+                remove_key(hash_table);    // remove_key function call on selction 4
                     break;
             case 5:
-                modify_key(hash_table);
+                modify_key(hash_table);    // modify_key function call on selction 5
                     break;
             default:
                 cout << "Invalid";
@@ -71,9 +71,6 @@ int main() {
         }
         choice = main_menu();
     }
-//    villagers.clear();
-//    if (villagers.empty())
-//        cout << "List cleared" << endl;
     
     cout << "Thanks for using the Hash Table Manager" << endl;
     cout << "----------------------------" << endl;
@@ -88,7 +85,6 @@ int gen_hash_index(string str) {    // sum_ascii function definition
         ascii_sum += (int) str.at(i);
     
     return ascii_sum;    // sum of the string's ascii values returned
-    
 }
 
 int main_menu() {
@@ -110,14 +106,6 @@ int main_menu() {
         cout << "----------------------------" << endl;
     
     return choice;
-    
-    //  Add an interactive menu to your Lab 37 project with these new features:
-        //  print the first 100 entries; search for a key; add a key; remove a key; modify a key; and exit.
-    //
-    //    In your finished Lab 37, create a new Lab38 branch, and code this assignment on that branch.
-    //
-    //    Do not collapse/merge/pull/squash anything - just leave that branch active so I can see it.
-        
 }
 
 void print_first_100(map<int, list<char>> hash_table) {
